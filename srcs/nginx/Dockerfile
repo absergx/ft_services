@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: memilio <memilio@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/16 12:27:39 by memilio           #+#    #+#              #
+#    Updated: 2020/10/16 12:27:39 by memilio          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 FROM alpine:latest
 
 RUN apk update
@@ -18,14 +30,14 @@ RUN chown -R www:www /www
 RUN mkdir /run/nginx
 
 #Nginx config and index page
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+# COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /var/www
 
 #Create SSH user
-RUN adduser -D memilio && echo 'memilio:2020' | chpasswd && addgroup memilio wheel
-RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
-RUN ssh-keygen -a
+#RUN adduser -D memilio && echo 'memilio:2020' | chpasswd && addgroup memilio wheel
+#RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
+#RUN ssh-keygen -a
 
 #Create SSL key
 RUN openssl req -days 365 -newkey rsa:2048  \

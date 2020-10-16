@@ -1,11 +1,12 @@
 FROM alpine:latest
-RUN apk add vim openrc mysql mysql-client
+RUN apk add openrc mysql mysql-client
 
-COPY /db.cnf ./etc/mysql/
-COPY /start.sh ./
-#COPY /wordpress.sql ./
+COPY srcs/db.cnf ./etc/mysql/
+COPY srcs/start.sh ./
+COPY srcs/wordpress.sql ./
 
-VOLUME	/var/lib/mysql
+VOLUME	["sys/fs/cgroup"]
+VOLUME	["/var/lib"]
 
 EXPOSE 3306
 

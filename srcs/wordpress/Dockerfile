@@ -1,21 +1,25 @@
 FROM alpine:latest
 
-RUN apk add nginx openrc supervisor vim php7 php7-fpm php7-json php7-mysqli \
-mysql mysql-client wget && rm /etc/nginx/conf.d/default.conf \
-&& rc-update add php-fpm7 default
+RUN		apk update && \
+		apk add openrc nginx supervisor mysql mysql-client \
+				php7 php7-fpm php7-json php7-mysqli
 
-RUN wget https://wordpress.org/latest.tar.gz \
-&& tar -xf latest.tar.gz && rm -rf latest.tar.gz \
-&& mv wordpress /var/www/wordpress \
-&& chmod 777 /var/www/* && chmod 777 /var/www/wordpress/* \
-&& mkdir -p /run/nginx && mkdir -p /run/php
+RUN		rc-update add php-fpm7 default
 
-COPY nginx.conf /etc/nginx/conf.d/
-COPY	supervisord.conf	/etc/supervisord.conf
-COPY wp-config.php /var/www/wordpress
-VOLUME /sys/fs/cgroup
+RUN		mkdir -p /run/nginx
+RUN		mkdir -p /var/run/php
 
+RUN		sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php7/php-fpm.conf
+RUN		sed -it 's/;   extension=mysql.so/extension=mysql.so/g' /etc/php7/php.ini
 
-EXPOSE 5050
+COPY	srcs/wordpress.conf		/etc/nginx/conf.d/wordpress.conf
+COPY	srcs/supervisord.conf	/etc/supervisord.conf
+
+RUN		wget https://wordpress.org/latest.tar.gz
+RUN		tar -xf latest.tar.gz
+RUN		rm -rf latest.tar.gz
+RUN		mv wordpress /var/www/wordpress
+
+EXPOSE	9000 5050
 
 CMD		["usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
