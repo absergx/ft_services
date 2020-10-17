@@ -20,6 +20,6 @@ RUN		tar -xf latest.tar.gz
 RUN		rm -rf latest.tar.gz
 RUN		mv wordpress /var/www/wordpress
 
-EXPOSE	9000 5050
+EXPOSE	5050
 
 CMD		["usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
