@@ -43,7 +43,7 @@ spec:
         app: mysql
     spec:
       volumes:
-      - name: mysql-storage
+      - name: mysql-volume
         persistentVolumeClaim:
           claimName: mysql-claim
       containers:
@@ -53,5 +53,5 @@ spec:
         ports:
         - containerPort: 3306
         volumeMounts:
-        - name: mysql-storage
+        - name: mysql-volume
           mountPath: /var/lib/

@@ -9,7 +9,7 @@ spec:
     app: ftps
   ports:
   - port: 21
-    name: port-http
+    name: port-ftps
     protocol: TCP
     targetPort: 21
   - port: 10100
