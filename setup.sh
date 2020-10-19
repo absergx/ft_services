@@ -1,5 +1,5 @@
 #services=("nginx" "wordpress" "phpmyadmin" "mysql" "influx" "grafana" "ftps")
-services=("nginx" "phpmyadmin" "mysql" "wordpress" "ftps")
+services=("nginx" "phpmyadmin" "mysql" "wordpress" "ftps" "influx")
 minikube start --vm-driver=virtualbox
 eval $(minikube docker-env) > /dev/null
 
