@@ -6,7 +6,7 @@
 #    By: memilio <memilio@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/16 12:27:39 by memilio           #+#    #+#              #
-#    Updated: 2020/10/18 19:40:15 by memilio          ###   ########.fr        #
+#    Updated: 2020/10/19 18:56:10 by memilio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,11 @@ RUN chown -R www:www /www
 RUN mkdir /run/nginx
 
 #Nginx config and index page
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY index.html /var/www
+COPY srcs/nginx.conf /etc/nginx/conf.d/default.conf
+COPY srcs/index.html /var/www
 
 #Create SSH user
+# RUN mkdir -p /var/run/sshd
 # RUN adduser -D memilio && echo 'memilio:2020' | chpasswd && addgroup memilio wheel
 # RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
 # RUN ssh-keygen -a
@@ -48,7 +49,7 @@ RUN openssl req -days 365 -newkey rsa:2048  \
 		-subj '/C=RU/ST=XX/L=XX/O=XX/OU=XX/CN=born2code'
 
 #Starting
-COPY start.sh ./start.sh
+COPY srcs/start.sh ./start.sh
 RUN chmod +x ./start.sh
 CMD sh ./start.sh
 EXPOSE 80
