@@ -6,7 +6,7 @@
 #    By: memilio <memilio@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/16 12:27:39 by memilio           #+#    #+#              #
-#    Updated: 2020/10/19 18:56:10 by memilio          ###   ########.fr        #
+#    Updated: 2020/10/20 14:56:02 by memilio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ RUN chown -R www:www /var/lib/nginx
 RUN chown -R www:www /www
 RUN mkdir /run/nginx
 
+#Supervisord conf
+COPY srcs/supervisord.conf /etc
+
 #Nginx config and index page
 COPY srcs/nginx.conf /etc/nginx/conf.d/default.conf
 COPY srcs/index.html /var/www
@@ -48,10 +51,12 @@ RUN openssl req -days 365 -newkey rsa:2048  \
 		-keyout /etc/ssl/certs/key.key \
 		-subj '/C=RU/ST=XX/L=XX/O=XX/OU=XX/CN=born2code'
 
+#Listen ports
+EXPOSE 80
+EXPOSE 443
+EXPOSE 22
+
 #Starting
 COPY srcs/start.sh ./start.sh
 RUN chmod +x ./start.sh
 CMD sh ./start.sh
-EXPOSE 80
-EXPOSE 443
-EXPOSE 22
