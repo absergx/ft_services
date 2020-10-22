@@ -1,5 +1,5 @@
 #services=("nginx" "wordpress" "phpmyadmin" "mysql" "influx" "grafana" "ftps")
-services=("nginx" "phpmyadmin" "mysql" "wordpress" "ftps" "influx")
+services=("nginx" "phpmyadmin" "mysql" "wordpress" "ftps" "influx" "grafana")
 minikube start --vm-driver=virtualbox
 eval $(minikube docker-env) > /dev/null
 
@@ -23,7 +23,7 @@ done
 echo "\nIp address nginx: 192.168.99.101:443\n"
 echo "Ip address wordpress: 192.168.99.102:5050\n"
 echo "Ip address phpmyadmin: 192.168.99.103:5000\n"
-echo "Ip address grafana: 192.168.99.104:3000\n"
+echo "Ip address grafana: 192.168.99.110:3000\n"
 echo "Ip address ftps: 192.168.99.105:21\n"
 echo "Hostname influx: http://influxdb-svc:8086\n"
 echo "Hostname mysql: mysql-svc:3306\n\033[0m"

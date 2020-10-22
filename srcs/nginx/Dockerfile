@@ -6,7 +6,7 @@
 #    By: memilio <memilio@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/16 12:27:39 by memilio           #+#    #+#              #
-#    Updated: 2020/10/20 14:56:02 by memilio          ###   ########.fr        #
+#    Updated: 2020/10/23 04:04:35 by memilio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ COPY srcs/supervisord.conf /etc
 
 #Nginx config and index page
 COPY srcs/nginx.conf /etc/nginx/conf.d/default.conf
-COPY srcs/index.html /var/www
+COPY srcs/index.html /var/www/index.html
 
 #Create SSH user
 # RUN mkdir -p /var/run/sshd
