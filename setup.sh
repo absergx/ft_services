@@ -33,7 +33,7 @@ kubectl apply -f srcs/yamls/ftps.yaml				|| emergency_exit
 kubectl apply -f srcs/yamls/influx.yaml				|| emergency_exit
 kubectl apply -f srcs/yamls/grafana.yaml			|| emergency_exit
 
-echo "\n\033[38;5;46mBuild success! Now you can use followed services:"
+echo "\n\033[38;5;46mBuild success! Enjoy my ft_services:"
 echo "Ip address nginx: 192.168.99.101:443"
 echo "Ip address wordpress: 192.168.99.102:5050"
 echo "Ip address phpmyadmin: 192.168.99.103:5000"

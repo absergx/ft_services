@@ -9,15 +9,15 @@ spec:
     app: nginx
   ports:
     - port: 443
-      name: port-https
+      name: https
       protocol: TCP
       targetPort: 443
     - port: 80
-      name: port-http
+      name: http
       protocol: TCP
       targetPort: 80
     - port: 22
-      name: port-ssh
+      name: ssh
       protocol: TCP
       targetPort: 22
 
